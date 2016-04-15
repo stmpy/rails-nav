@@ -1,0 +1,25 @@
+[Unit]
+Description=Ruby On Rails API Consumption Example
+Requires=docker.service
+After=docker.service
+
+[Service]
+User=core
+EnvironmentFile=/etc/os-release
+EnvironmentFile=/etc/environment
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker pull stmpy/%p
+ExecStart=/usr/bin/docker run --rm \
+  -e RAILS_ENV=production \
+  -e HOST_IP=${COREOS_PUBLIC_IPV4} \
+  -e HOST_OS=${PRETTY_NAME} \
+  -e RAILS_SERVE_STATIC_FILES=yes \
+  -e SECRET_KEY_BASE=<POPULATE_ME> \
+  -p 80:5000 \
+  -h %p_%m \
+  --name %p \
+  stmpy/%p foreman start
+ExecStop=/usr/bin/docker stop %p
+
+[X-Fleet]
+Global=true

@@ -1,7 +1,5 @@
-require 'httparty'
-
 class Boolio < ActiveRecord::Base
-  
+
   # callbacks to interact with booleans API
   before_create :create_baas
   before_save :update_baas
@@ -49,6 +47,9 @@ class Boolio < ActiveRecord::Base
     end
 
     def update_baas
+
+      # only want to check on existing items
+      return true if self.new_record?
 
       # update boolean
       response = HTTParty.put( @@base_url + '/' + self.api_id,
