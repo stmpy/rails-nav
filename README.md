@@ -9,5 +9,5 @@ I ended up using [httparty](https://github.com/jnunemaker/httparty) for the API 
 ### Giphy.com
 There is also a small interface with [giphy's api](http://api.giphy.com) which will pull 1 image from the top 30 results of querying for `true` or `false`. Sometimes they really don't make a lot of sense, but that is giphy for you.
 
-### Desgin
+### Design
 I've never claimed to be amazing at UX/UI, so I used [zurb's foundation](http://foundation.zurb.com) for some quick and dirty styles.
