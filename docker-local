@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker run -it \
+  --rm \
+  --name rails-nav \
+  -v "$PWD/app":/var/www/app \
+  -p 3000:3000 \
+  rails-nav $@
